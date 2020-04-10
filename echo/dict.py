@@ -40,7 +40,6 @@ class CallbackDict(dict):
 
     def update(self, *args, **kwargs):
         super().update(*args, **kwargs)
-
         self.callback()
 
     def pop(self, *args, **kwargs):
@@ -52,6 +51,10 @@ class CallbackDict(dict):
         self.callback()
 
         return result
+
+    def __setitem__(self, *args, **kwargs):
+        super().__setitem__(*args, **kwargs)
+        self.callback()
 
     def __reversed__(self):
         result = super().__reversed__()
